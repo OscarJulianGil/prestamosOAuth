@@ -31,6 +31,9 @@ public class User {
     @Column(name ="password", length = 200)
     private String password;
 
+    @Column(name = "fechanacimiento")
+    private java.util.Date fechaNacimiento;
+
     public int getId() {
         return id;
     }
@@ -101,5 +104,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public java.util.Date getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(java.util.Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
     }
 }

@@ -316,6 +316,8 @@
                                 <th>Apellidos</th>
                                 <th>Correo</th>
                                 <th>Documento</th>
+                                <th>Acciones</th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -324,6 +326,15 @@
                                 <td th:text="${usr.apellidos}"></td>
                                 <td th:text="${usr.correoElectronico}"></td>
                                 <td th:text="${usr.numeroDocumento}"></td>
+                                <td>
+                                    <a  class="btn btn-primary" th:href="@{/admin/edituser/{postId}(postId=${usr.Id})}">
+                                        Editar
+                                    </a>
+
+                                    <a th:href="@{/admin/deleteuser/{postId}(postId=${usr.Id})}" class="btn btn-success">
+                                        Eliminar
+                                    </a>
+                                </td>
                             </tr>
                         </tbody>
                     </table>

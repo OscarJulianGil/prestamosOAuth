@@ -19,7 +19,7 @@ public class IndexController {
         this.userService = service;
     }
 
-    @RequestMapping("getusuarios")
+    @GetMapping("getusuarios")
     public ArrayList<User> getUsuarios(){
         return this.userService.selectAll();
     }
@@ -49,4 +49,9 @@ public class IndexController {
         return this.userService.loginUser(request);
     }
 
+
+    @PatchMapping("update")
+    public Response otherUpdate(@RequestBody User request){
+        return   this.userService.updateUser(request);
+    }
 }

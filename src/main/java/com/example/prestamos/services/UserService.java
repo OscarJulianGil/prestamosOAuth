@@ -120,6 +120,34 @@ public class UserService {
         return  response;
     }
 
+
+    public Response updateUserName(User data){
+        Response response = new Response();
+
+
+        if(data.getId() == 0){
+            response.setCode(500);
+            response.setMessage("Error, el Id del usuario no es válido.");
+            return response;
+        }
+
+        //Validamos si el usuario que desea actualizar existe.
+        User exists = selectById(data.getId());
+        if(exists == null){
+            response.setCode(500);
+            response.setMessage("Error, el usuario no existe en la base de datos.");
+            return response;
+        }
+
+        exists.setNombres(data.getNombres());
+        exists.setApellidos(data.getApellidos());
+
+        this.userRepository.save(exists);
+        response.setCode(200);
+        response.setMessage("Usuario modificado exitosamente");
+        return  response;
+    }
+
     public Response loginUser(User data){
         Response response = new Response();
 
