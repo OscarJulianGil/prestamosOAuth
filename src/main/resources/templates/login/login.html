@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
 <head>
 
@@ -41,15 +42,15 @@
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">Bienvenido.!</h1>
                                 </div>
-                                <form action="/postlogin" method="post" class="user">
+                                <form th:action="@{/login}" method="post" class="user">
                                     <div class="form-group">
-                                        <input required type="email" name="correoElectronico" class="form-control form-control-user"
-                                               id="exampleInputEmail" aria-describedby="emailHelp"
+                                        <input required name="username" class="form-control form-control-user"
+                                               aria-describedby="emailHelp"
                                                placeholder="Ingrese su usuario">
                                     </div>
                                     <div class="form-group">
                                         <input required type="password" name="password" class="form-control form-control-user"
-                                               id="exampleInputPassword" placeholder="Ingrese su contraseña">
+                                               placeholder="Ingrese su contraseña">
                                     </div>
                                     <!--<div class="form-group">
                                         <div class="custom-control custom-checkbox small">

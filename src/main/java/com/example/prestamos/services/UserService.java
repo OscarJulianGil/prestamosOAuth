@@ -3,6 +3,7 @@ package com.example.prestamos.services;
 import com.example.prestamos.entities.EnumPerfil;
 import com.example.prestamos.entities.User;
 import com.example.prestamos.repository.IUserRepository;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.mail.internet.AddressException;
@@ -49,7 +50,8 @@ public class UserService {
             response.setMessage("Error, el correo electronico ya esta en uso.");
             return  response;
         }
-
+        BCryptPasswordEncoder encrypt = new BCryptPasswordEncoder();
+        data.setPassword(encrypt.encode(data.getPassword()));
         this.userRepository.save(data);
         response.setCode(200);
         response.setMessage("Usuario registrado exitosamente");
@@ -64,6 +66,11 @@ public class UserService {
         else {
             return null;
         }
+    }
+
+    public User findByUsername(String userName){
+        User existe = this.userRepository.findByUsername(userName);
+        return  existe;
     }
 
     public Response deleteUserById(int Id){
