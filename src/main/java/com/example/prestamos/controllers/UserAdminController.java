@@ -66,4 +66,13 @@ public class UserAdminController {
         return  new RedirectView("/admin/usuarios");
     }
 
+
+    @GetMapping("tiposdocumento")
+    public String tipodocumento(Model data)
+    {
+        data.addAttribute("tiposdocumento",this.docService.selectAll());
+        data.addAttribute("titulopagina","Administración documentos");
+        return "useradmin/tipodocumento";
+    }
+
 }

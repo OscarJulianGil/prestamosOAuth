@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{master}">
+<head></head>
+<body>
+  <div layout:fragment="content">
+    <div class="container-fluid">
+      <h1 class="h3 mb-4 text-gray-800" th:text="${titulopagina}"></h1>
+      <div class="row">
+        <div class="col-sm-12">
+          <table class="table table-bordered dataTable">
+            <thead>
+                <tr>
+                  <th>Nombre del documento</th>
+                  <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="usr : ${tiposdocumento}">
+                    <td th:text="${usr.nombre}"></td>
+                    <td>
+                        <a class="btn btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
