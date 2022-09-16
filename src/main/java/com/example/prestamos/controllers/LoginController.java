@@ -17,7 +17,6 @@ import org.springframework.web.servlet.view.RedirectView;
 import java.util.ArrayList;
 
 @Controller
-@RequestMapping("login")
 public class LoginController {
 
     private UserService service;
@@ -28,6 +27,10 @@ public class LoginController {
         this.docService = docService;
     }
 
+    @GetMapping("/")
+    public String root(){
+        return "login/login";
+    }
     @GetMapping("login")
     public String login(){
         return "login/login";
@@ -51,7 +54,7 @@ public class LoginController {
             return new RedirectView("/inicio");
         }
         else{
-            return new RedirectView("/login/error");
+            return new RedirectView("/error");
         }
     }
 
@@ -60,11 +63,11 @@ public class LoginController {
 
         if(data.getPassword().equals(null) || data.getPassword().equals("")){
             System.out.println("Contraseña no valida");
-            return new RedirectView("/login/error");
+            return new RedirectView("/error");
         }
         if(!data.getPassword().equals(data.getValidaPassword())){
             System.out.println("Las contraseñas no coinciden.");
-            return new RedirectView("/login/error");
+            return new RedirectView("/error");
         }
 
         User user = new User();
@@ -80,10 +83,10 @@ public class LoginController {
         Response response = this.service.createUser(user);
         System.out.println(response.getMessage());
         if(response.getCode() == 200){
-            return new RedirectView("/inicio");
+            return new RedirectView("/login");
         }
         else{
-            return new RedirectView("/login/error");
+            return new RedirectView("/error");
         }
     }
 
