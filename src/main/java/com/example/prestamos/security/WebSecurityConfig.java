@@ -29,11 +29,12 @@ public class WebSecurityConfig implements UserDetailsService  {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf().disable()
-                .authorizeHttpRequests((requests) -> requests
+        http.csrf().disable().
+                authorizeHttpRequests((requests) -> requests
                         .antMatchers("/", "/home","/**/*.js", "/**/*.css","/registro","/postregistro").permitAll()
                         .anyRequest().authenticated()
-                )
+                ).oauth2Login()
+                .and()
                 .formLogin((form) -> form
                         .loginPage("/login")
 

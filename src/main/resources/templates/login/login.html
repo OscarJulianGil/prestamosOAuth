@@ -71,6 +71,13 @@
                                     </a>-->
                                 </form>
                                 <hr>
+                                <div sec:authorize="!isAuthenticated()">
+                                    <a lass="btn btn-danger btn-user btn-block" th:href="@{/oauth2/authorization/auth0}">Ingresar con Auth0</a>
+                                </div>
+                                <div sec:authorize="isAuthenticated()">
+                                    <a href="/inicio">Ir al dashboarb!</a>
+                                </div>
+                                <hr>
                                 <div class="text-center">
                                     <a class="small" href="/registro">Eres nuevo, REGISTRESE AQUI.</a>
                                 </div>
